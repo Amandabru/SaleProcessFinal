@@ -12,7 +12,7 @@ import se.kth.iv1350.saleProcess.view.View;
 public class Main {
 
 	/**
-	 * The method to start the application.
+	 * The method to start the application
 	 *
 	 * @param args The application does not take any command line parameters.
 	 */
