@@ -3,6 +3,7 @@ package se.kth.iv1350.saleProcess.model;
 
 import se.kth.iv1350.saleProcess.Integration.ExternalAccountingSystem;
 import se.kth.iv1350.saleProcess.Integration.ExternalInventorySystem;
+import se.kth.iv1350.saleProcess.Integration.ItemDTO;
 import se.kth.iv1350.saleProcess.Integration.Printer;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
@@ -76,23 +77,18 @@ public class Sale {
 	/**
 	 * Increases the quantity of a <code>LineItem</code> when the item is registered more than once
 	 * @param itemId the id of the item that is registered
-	 * @param newQuantity the quantity that is to be added to the <code>LineItem</code>
+	 * @param quantity the quantity that is to be added to the <code>LineItem</code>
 	 * @return an <code>AddedItemInformation</code> object that contains information
 	 * that is to be displayed to the cashier.
 	 */
-	public AddedItemInformation increaseQuantity(int itemId, int newQuantity) {
+	public AddedItemInformation increaseQuantity(int itemId, int quantity) {
 		LineItem lineItem = findLineItemById(itemId);
-
-		Amount previousPrice = lineItem.getPrice();
-		Amount previousPriceIncludingTax = lineItem.getPriceIncludingTax();
-
-		lineItem.increaseQuantity(newQuantity);
-
-		Amount currentPrice = lineItem.getPrice();
-		Amount  currentPriceIncludingTax = lineItem.getPriceIncludingTax();
-
-		updateRunningTotal(currentPrice.minus(previousPrice));
-		updateRunningTotalIncludingTax(currentPriceIncludingTax.minus(previousPriceIncludingTax));
+		ItemDTO item = lineItem.getItem();
+		Amount priceIncludingTax = item.getPriceIncludingTax().multiply(quantity);
+		Amount priceExcludingTax = item.getPrice().multiply(quantity);
+		lineItem.increaseQuantity(quantity);
+		updateRunningTotal(priceExcludingTax);
+		updateRunningTotalIncludingTax(priceIncludingTax);
 		return new AddedItemInformation(lineItem, runningTotalIncludingTax);
 	}
 
