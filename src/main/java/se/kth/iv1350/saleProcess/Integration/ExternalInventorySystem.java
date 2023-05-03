@@ -17,7 +17,7 @@ public class ExternalInventorySystem {
 	private final List<LineItem> items = new ArrayList<>();
 
 	/**
-	 * Creates a new instance and adds <code>ItemDTOs</code> to it.
+	 * Creates a new instance and adds <code>ItemDTOs</code> to the <code>items</code> list.
 	 */
 	ExternalInventorySystem() {
 		addItems();
@@ -25,7 +25,7 @@ public class ExternalInventorySystem {
 
 	/**
 	 * Adds an <code>ItemDTO</code> to the <code>ArrayList</code> which is representing the external inventory system.
-	 * The added item is hard coded and an example of an item that might exist.
+	 * The added item is hard coded and an example of an item that might exist in the retail store.
 	 */
 	private void addItems(){
 		ItemDTO banana = new ItemDTO(12, "Banana", 0.12F, new Amount(2), "Very good banana");
@@ -35,7 +35,7 @@ public class ExternalInventorySystem {
 	}
 
 	/**
-	 * Method that returns the <code>ItemDTO</code> of a given item id.
+	 * Method that returns the <code>ItemDTO</code> from a given item id.
 	 * @param itemId The item id that is used for finding a specific item.
 	 * @return the item if the matching item id is found. Otherwise <code>null</code> is returned.
 	 */

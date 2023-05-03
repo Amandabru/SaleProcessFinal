@@ -4,6 +4,9 @@ package se.kth.iv1350.saleProcess.model;
 import se.kth.iv1350.saleProcess.Integration.ExternalAccountingSystem;
 import se.kth.iv1350.saleProcess.Integration.ExternalInventorySystem;
 
+/**
+ * Class that updates the external systems with the sale information
+ */
 public class SalesLog {
 	private final ExternalAccountingSystem accountingSys;
 	private final ExternalInventorySystem inventorySys;

@@ -10,6 +10,9 @@ import se.kth.iv1350.saleProcess.utils.Amount;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that stores information about the ongoing sale
+ */
 public class Sale {
 	private Amount runningTotal;
 	private Amount runningTotalIncludingTax;
@@ -95,7 +98,7 @@ public class Sale {
 	/**
 	 * Checks if an item is already recorded in the current sale
 	 * @param itemId the id of the item that is to be checked
-	 * @return the <code>LineItem</code> if the item was already recorded. If not <code>null</code>
+	 * @return the <code>LineItem</code> if the item was already recorded. If not, <code>null</code>
 	 * is returned.
 	 */
 	public boolean isRecorded(int itemId) {
@@ -120,7 +123,7 @@ public class Sale {
 	}
 
 	/**
-	 * get the change of the customer's paid amount
+	 * get the change from the customer's paid amount
 	 * @return the <code>change</code> that the customer should be given
 	 */
 	Amount getChange(){

@@ -20,22 +20,23 @@ public class LineItem {
 	}
 
 	/**
-	 * Get the item of the SalesLineIem object
-	 * @return the item of the SalesLineItem
+	 * Get the item of the <code>LineItem</code> object
+	 * @return the <code>itemDTO</code> of the <code>LineItem</code>
 	 */
 	public ItemDTO getItem(){
 		return item;
 	}
 
 	/**
-	 * Get the price of the SalesLineIem object
-	 * @return the price of the SalesLineIem object
+	 * Get the price of the <code>LineItem</code> object
+	 * @return the price of the <code>LineItem</code> object
 	 */
 	Amount getPrice(){
 		return item.getPrice().multiply(quantity);
 	}
 
 	/**
+	 * Get the quantity of the <code>LineItem</code>
 	 * @return the <code>quantity</code> of the item
 	 */
 	public int getQuantity(){
@@ -43,7 +44,8 @@ public class LineItem {
 	}
 
 	/**
-	 * @return the total price including tax for the <code>item</code> of the specified <code>quatity</code>
+	 * Get the price including VAT rate
+	 * @return the total price including tax for the specified <code>quantity</code> of <code>item</code>
 	 */
 	Amount getPriceIncludingTax(){
 		return item.getPriceIncludingTax().multiply(quantity);
@@ -51,7 +53,7 @@ public class LineItem {
 
 	/**
 	 * Increases the quantity of a line item by the <code>newQuantity</code>
-	 * @param newQuantity
+	 * @param newQuantity the quantity that is to be added
 	 */
 	void increaseQuantity(int newQuantity){
 		quantity += newQuantity;
@@ -59,7 +61,7 @@ public class LineItem {
 
 	/**
 	 * Decreases the quantity of a line item by the <code>newQuantity</code>
-	 * @param newQuantity
+	 * @param newQuantity the quantity that is to be subtracted
 	 */
 	public void decreaseQuantity(int newQuantity){
 		quantity -= newQuantity;

@@ -13,8 +13,8 @@ public class AddedItemInformation {
 
     /**
      * Creates a new instance
-     * @param lineItem
-     * @param runningTotalIncludingTax
+     * @param lineItem a bought item with its corresponding quantity
+     * @param runningTotalIncludingTax the running total including the VAT rate
      */
     public AddedItemInformation(LineItem lineItem, Amount runningTotalIncludingTax ) {
         this.lineItem = lineItem;
