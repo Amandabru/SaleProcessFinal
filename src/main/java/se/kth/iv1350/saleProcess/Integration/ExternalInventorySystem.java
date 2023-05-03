@@ -65,4 +65,7 @@ public class ExternalInventorySystem {
 		}
 	}
 
+	public List<LineItem> getInventoryItems(){
+		return items;
+	}
 }
