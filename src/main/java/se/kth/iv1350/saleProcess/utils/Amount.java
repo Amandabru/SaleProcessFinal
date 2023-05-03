@@ -1,7 +1,7 @@
 package se.kth.iv1350.saleProcess.utils;
 
 /**
- * Class representing an Amount that is used for prices and payments.
+ * Class representing an amount that is used for prices and payments.
  */
 public final class Amount {
     private final float amount;
@@ -15,7 +15,6 @@ public final class Amount {
 
     /**
      * Creates a new instance, representing the specified amount.
-     *
      * @param amount The amount represented by the newly created instance.
      */
     public Amount(float amount) {

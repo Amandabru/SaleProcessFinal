@@ -10,7 +10,7 @@ public class Receipt {
 
 	/**
 	 * Creates a new instance.
-	 * @param sale
+	 * @param sale the object for the current <code>Sale</code>
 	 */
 	Receipt (Sale sale) {
 		this.sale = sale;

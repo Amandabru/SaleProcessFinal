@@ -67,8 +67,8 @@ public class ItemDTO {
 	}
 
 	/**
-	 * Get the name of item
-	 * @return the name of item
+	 * Get the <code>name</code> of item
+	 * @return the <code>name</code> of item
 	 */
 	public String getName() {
 		return name;
