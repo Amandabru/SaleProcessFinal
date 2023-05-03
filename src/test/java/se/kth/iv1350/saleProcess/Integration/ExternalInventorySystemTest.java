@@ -11,20 +11,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExternalInventorySystemTest {
 
-    @Test
-    void getItem() {
-        List<LineItem> soldItems = new ArrayList<>();
 
-        for (LineItem lineItem : soldItems){
-            for (LineItem inventoryItem: items) {
-                if (lineItem.getItem().getItemId() == inventoryItem.getItem().getItemId()) {
-                    inventoryItem.decreaseQuantity(lineItem.getQuantity());
-                }
-            }
-        }
-    }
-
-    @Test
-    void updateInventory() {
-    }
 }
