@@ -7,8 +7,6 @@ import se.kth.iv1350.saleProcess.model.LineItem;
 import se.kth.iv1350.saleProcess.model.Sale;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExternalInventorySystemTest {
