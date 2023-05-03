@@ -65,7 +65,16 @@ public class ExternalInventorySystem {
 		}
 	}
 
-	public List<LineItem> getInventoryItems(){
-		return items;
+	/**
+	 * Return the quantity of the specified <code>id</code> of an item.
+	 * @return the quantity of the specified item in the inventory.
+	 */
+	public int getItemQuantity(int id){
+		for (LineItem inventoryItem: items) {
+			if (inventoryItem.getItem().getItemId() == id) {
+				return inventoryItem.getQuantity();
+			}
+		}
+		return 0;
 	}
 }

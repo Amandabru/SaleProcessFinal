@@ -32,29 +32,18 @@ class ExternalInventorySystemTest {
     @Test
     void updateInventorySameItem() {
         inventorySystem.updateInventory(sale);
-        List<LineItem> items = inventorySystem.getInventoryItems();
-        int result = 0;
+        int bananaItemId = 12;
         int expectedResult= 195; // After having bought 5 bananas, inventory should decrease from 200 to 195.
-        for (LineItem inventoryItem: items) {
-            if (inventoryItem.getItem().getItemId() == 12) {
-                result = inventoryItem.getQuantity();
-            }
-        }
-        assertEquals(expectedResult, result, "Inventory system not updated correctly");
+        int result = inventorySystem.getItemQuantity(bananaItemId);
+        assertEquals(expectedResult, result, "Inventory system not updated correctly.");
     }
 
     @Test
     void updateInventoryDifferentItem() {
         inventorySystem.updateInventory(sale);
-        List<LineItem> items = inventorySystem.getInventoryItems();
-        int result = 0;
         int orangeItemId = 25;
         int expectedResult = 50; //There are 50 items of flour in the inventory at creation
-        for (LineItem inventoryItem: items) {
-            if (inventoryItem.getItem().getItemId() == orangeItemId) {
-                result = inventoryItem.getQuantity();
-            }
-        }
-        assertEquals(expectedResult , result, "Wrong item changes in quantity at inventory update ");
+        int result = inventorySystem.getItemQuantity(orangeItemId);
+        assertEquals(expectedResult , result, "Wrong item changes in quantity at inventory update.");
     }
 }
