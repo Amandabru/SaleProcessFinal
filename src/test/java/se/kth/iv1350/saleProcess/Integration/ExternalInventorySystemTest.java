@@ -28,20 +28,39 @@ class ExternalInventorySystemTest {
         inventorySystem = null;
     }
     @Test
-    void updateInventorySameItem() {
+    void testUpdateInventorySameItem() {
         inventorySystem.updateInventory(sale);
         int bananaItemId = 12;
         int expectedResult= 195; // After having bought 5 bananas, inventory should decrease from 200 to 195.
         int result = inventorySystem.getItemQuantity(bananaItemId);
-        assertEquals(expectedResult, result, "Inventory system not updated correctly.");
+        assertEquals(expectedResult, result, "Quantity of inventory item not affected by inventory update");
     }
 
     @Test
-    void updateInventoryDifferentItem() {
+    void testUpdateInventoryDifferentItem() {
         inventorySystem.updateInventory(sale);
         int orangeItemId = 25;
         int expectedResult = 50; //There are 50 items of flour in the inventory at creation
         int result = inventorySystem.getItemQuantity(orangeItemId);
         assertEquals(expectedResult , result, "Wrong item changes in quantity at inventory update.");
     }
+    
+    @Test
+    void testGetItemNonExistingItem() {
+        int nonExistingId = 10;
+        ItemDTO result = inventorySystem.getItem(nonExistingId);
+        assertNull(result, "Getting an item that does not exist in inventory does not return null");
+    }
+
+    @Test
+    void testGetItemExistingItem() {
+        int existingId = 12;
+        ItemDTO existingItem = new ItemDTO(12, "Banana", 0.12F, new Amount(2), "Very good banana");
+        int expectedResult = existingItem.getItemId();
+        int result = inventorySystem.getItem(existingId).getItemId();
+        assertEquals(expectedResult, result, "Failed to get existing item from inventory");
+    }
+
+
+
 }
