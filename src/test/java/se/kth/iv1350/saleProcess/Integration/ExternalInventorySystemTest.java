@@ -44,21 +44,43 @@ class ExternalInventorySystemTest {
         int result = inventorySystem.getItemQuantity(orangeItemId);
         assertEquals(expectedResult , result, "Wrong item changes in quantity at inventory update.");
     }
-    
+
     @Test
     void testGetItemNonExistingItem() {
         int nonExistingId = 10;
-        ItemDTO result = inventorySystem.getItem(nonExistingId);
-        assertNull(result, "Getting an item that does not exist in inventory does not return null");
+        try {
+            inventorySystem.getItem(nonExistingId);
+        }
+        catch (InvalidItemIdException ex){
+            assertTrue(ex.getMessage().contains(Integer.toString(nonExistingId)),
+                    "Wrong exception message, does not contain the non existing Id:" + ex.getMessage());
+        }
     }
 
     @Test
-    void testGetItemExistingItem() {
+    void testDataBaseConnectionError(){
+        int problematicId = 50;
+        try {
+            inventorySystem.getItem(problematicId);
+        }
+        catch (DataBaseException | InvalidItemIdException ex){
+            assertTrue(ex.getMessage().contains("Database cannot be called."),
+                    "Wrong exception message, does not contain information about not being able to call the database");
+        }
+    }
+
+    @Test
+    void testGetItemExistingItem(){
         int existingId = 12;
         ItemDTO existingItem = new ItemDTO(12, "Banana", 0.12F, new Amount(2), "Very good banana");
         int expectedResult = existingItem.getItemId();
-        int result = inventorySystem.getItem(existingId).getItemId();
-        assertEquals(expectedResult, result, "Failed to get existing item from inventory");
+        try{
+            int result = inventorySystem.getItem(existingId).getItemId();
+            assertEquals(expectedResult, result, "Failed to get existing item from inventory");
+        }
+        catch (DataBaseException | InvalidItemIdException exception){
+            fail("Error is thrown although item exists in inventory");
+        }
     }
 
 

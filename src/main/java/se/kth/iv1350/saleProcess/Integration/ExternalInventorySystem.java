@@ -38,6 +38,8 @@ public class ExternalInventorySystem {
 	 * Method that returns the <code>ItemDTO</code> from a given item id.
 	 * @param itemId The item id that is used for finding a specific item.
 	 * @return the item if the matching item id is found. Otherwise <code>null</code> is returned.
+	 * @throws InvalidItemIdException if the specified item id cannot be found in the inventory.
+	 * @throws DataBaseException if the specified item id equals 50, to simulate a database connection problem.
 	 */
 	public ItemDTO getItem(int itemId) throws InvalidItemIdException, DataBaseException {
 		for (LineItem lineItem : items) {

@@ -7,7 +7,7 @@ package se.kth.iv1350.saleProcess.model;
 public class ConsoleLogger implements Logger {
 
     /**
-     * Prints the specified string to <code>System.out</code>.
+     * Prints a string to <code>System.out</code>.
      *
      * @param message The string that will be printed to <code>System.out</code>.
      */

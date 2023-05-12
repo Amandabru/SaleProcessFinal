@@ -17,7 +17,6 @@ import se.kth.iv1350.saleProcess.utils.Amount;
 public class View {
 	private final Controller contr;
 	private Logger logger;
-
 	private FileLogger fileLogger = new FileLogger();
 	private ConsoleLogger consoleLogger = new ConsoleLogger();
 
@@ -53,7 +52,7 @@ public class View {
 		} catch(DataBaseException exception) {
 			setLogger(fileLogger);
 			logger.log(exception.toString());
-			setLogger((consoleLogger);
+			setLogger(consoleLogger);
 			logger.log("Error occurred when trying to get item information. Contact technical support.");
 		}
 	}

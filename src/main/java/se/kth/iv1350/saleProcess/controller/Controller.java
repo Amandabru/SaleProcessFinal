@@ -50,6 +50,8 @@ public class Controller {
 	 * @param itemId the id of the added item.
 	 * @param quantity the quantity of the added item.
 	 * @return information regarding the addedItem.
+	 * @throws InvalidItemIdException if the specified item id cannot be found in the inventory.
+	 * @throws DataBaseException if the specified item id equals 50, to simulate a database connection problem.
 	 */
 	public AddedItemInformation addItemToSale(int itemId, int quantity) throws InvalidItemIdException, DataBaseException {
 		AddedItemInformation addedItemInformation;
