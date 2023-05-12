@@ -1,0 +1,2 @@
+Something went wrong
+se.kth.iv1350.saleProcess.Integration.DataBaseException: Database cannot be called.

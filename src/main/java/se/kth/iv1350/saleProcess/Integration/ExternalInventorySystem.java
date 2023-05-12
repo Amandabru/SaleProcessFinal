@@ -39,14 +39,17 @@ public class ExternalInventorySystem {
 	 * @param itemId The item id that is used for finding a specific item.
 	 * @return the item if the matching item id is found. Otherwise <code>null</code> is returned.
 	 */
-	public ItemDTO getItem(int itemId) {
+	public ItemDTO getItem(int itemId) throws InvalidItemIdException, DataBaseException {
 		for (LineItem lineItem : items) {
 			ItemDTO item = lineItem.getItem() ;
 			if (item.getItemId() == itemId) {
 				return item;
 			}
+			else if (itemId == 50){
+				throw new DataBaseException("Database cannot be called.");
+			}
 		}
-		return null;
+		throw new InvalidItemIdException("No item with the identifier: " + Integer.toString(itemId));
 	}
 
 	/**

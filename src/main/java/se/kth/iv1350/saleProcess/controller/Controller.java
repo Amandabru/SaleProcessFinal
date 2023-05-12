@@ -51,7 +51,7 @@ public class Controller {
 	 * @param quantity the quantity of the added item.
 	 * @return information regarding the addedItem.
 	 */
-	public AddedItemInformation addItemToSale(int itemId, int quantity) {
+	public AddedItemInformation addItemToSale(int itemId, int quantity) throws InvalidItemIdException, DataBaseException {
 		AddedItemInformation addedItemInformation;
 		if (sale.isRecorded(itemId)){
 			addedItemInformation = sale.increaseQuantity(itemId, quantity);
