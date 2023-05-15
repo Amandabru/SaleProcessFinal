@@ -7,16 +7,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Updates the total revenue after ended sale and prints to file.
+ */
 public class TotalRevenueFileOutput implements SaleObserver {
     private Amount totalRevenue = new Amount();
     private static final String LOG_FILE_NAME = "total-revenue-log.txt";
     private PrintWriter logFile;
+
+    /**
+     * Updates the total revenue after ended sale and prints to file.
+     * @param runningTotal the <code>Amount</code> to add to the revenue.
+     */
     @Override
     public void updateRevenue(Amount runningTotal) {
-        addNewSale(runningTotal);
+        calculateRevenue(runningTotal);
         displaySale();
     }
-    private void addNewSale(Amount runningTotal){
+    private void calculateRevenue(Amount runningTotal){
         totalRevenue = totalRevenue.plus(runningTotal);
     }
 
