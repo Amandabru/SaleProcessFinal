@@ -93,6 +93,10 @@ public class Controller {
 		return change;
 	}
 
+	/**
+	 * Creates a discount request
+	 * @param customerId the id of the customer that is the personal number
+	 */
 	public void createDiscountRequest(int customerId){
 		Amount discount = discountDatabase.fetchDiscount(customerId, sale);
 		sale.setDiscount(discount);
