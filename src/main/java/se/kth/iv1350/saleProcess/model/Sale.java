@@ -178,9 +178,18 @@ public class Sale {
 		saleObservers.addAll(observers);
 	}
 
+	/**
+	 * Sets the discount to the calculated discount
+	 * @param totalDiscount the calculated discount
+	 */
 	public void setDiscount(Amount totalDiscount){
 		discount = totalDiscount;
 	}
+
+	/**
+	 * Get the discount of the customer's sale
+	 * @return the discount of the sale
+	 */
 	public Amount getDiscount(){
 		return discount;
 	}

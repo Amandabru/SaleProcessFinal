@@ -21,6 +21,8 @@ public final class Amount {
         this.amount = amount;
     }
 
+    public float getAmount(){return amount;}
+
     /**
      * Adds an <code>Amount</code> object to this object.
      * @param other The <code>Amount</code> to add.
