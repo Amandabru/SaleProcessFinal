@@ -4,7 +4,11 @@ import se.kth.iv1350.saleProcess.Integration.*;
 import se.kth.iv1350.saleProcess.model.AddedItemInformation;
 import se.kth.iv1350.saleProcess.model.LineItem;
 import se.kth.iv1350.saleProcess.model.Sale;
+import se.kth.iv1350.saleProcess.model.SaleObserver;
 import se.kth.iv1350.saleProcess.utils.Amount;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the controller of the application.
@@ -17,6 +21,8 @@ public class Controller {
 	private final ExternalAccountingSystem accountingSystem;
 	private final DiscountDatabase discountDatabase;
 	private Sale sale;
+
+	private List<SaleObserver> saleObservers = new ArrayList<>();
 
 	/**
 	 * Creates a new instance
@@ -36,6 +42,7 @@ public class Controller {
 	 */
 	public void initiateSale() {
 		this.sale = new Sale();
+		sale.addSaleObserver(saleObservers);
 	}
 
 	/**
@@ -43,6 +50,10 @@ public class Controller {
 	 */
 	public Amount endSale() {
 		return sale.endSale();
+	}
+
+	public void addSaleObserver(SaleObserver obs) {
+		saleObservers.add(obs);
 	}
 
 	/**

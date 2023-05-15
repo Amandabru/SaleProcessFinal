@@ -19,16 +19,19 @@ public class Sale {
 	private final List<LineItem> soldItems = new ArrayList<>();
 	private Amount change;
 
+	private List<SaleObserver> saleObservers = new ArrayList<>();
+
 	/**
 	 * Creates a new instance
 	 */
 	public Sale() {
-		this.runningTotal= new Amount();
-		this.runningTotalIncludingTax= new Amount();
+		this.runningTotal = new Amount();
+		this.runningTotalIncludingTax = new Amount();
 	}
 
 	/**
 	 * Adds a <code>LineItem</code> object to the current sale.
+	 *
 	 * @param lineItem representing an item and its corresponding quantity
 	 * @return an <code>AddedItemInformation</code> object that contains information
 	 * that is to be displayed to the cashier.
@@ -42,14 +45,17 @@ public class Sale {
 
 	/**
 	 * Ends the sale
+	 *
 	 * @return the running total including the VAT rate
 	 */
 	public Amount endSale() {
+		notifyObservers();
 		return runningTotalIncludingTax;
 	}
 
 	/**
 	 * Calculates the change from the paid amount by the customer.
+	 *
 	 * @param payment the amount paid by the customer
 	 * @return the <code>change</code> that the customer should be given
 	 */
@@ -60,6 +66,7 @@ public class Sale {
 
 	/**
 	 * Prints the receipts
+	 *
 	 * @param printer the printer
 	 */
 	public void printReceipt(Printer printer) {
@@ -69,7 +76,8 @@ public class Sale {
 
 	/**
 	 * Logs the information about the sale
-	 * @param accountSys the external accounting system
+	 *
+	 * @param accountSys   the external accounting system
 	 * @param inventorySys the external inventory system
 	 */
 	public void logSale(ExternalAccountingSystem accountSys, ExternalInventorySystem inventorySys) {
@@ -79,7 +87,8 @@ public class Sale {
 
 	/**
 	 * Increases the quantity of a <code>LineItem</code> when the item is registered more than once
-	 * @param itemId the id of the item that is registered
+	 *
+	 * @param itemId   the id of the item that is registered
 	 * @param quantity the quantity that is to be added to the <code>LineItem</code>
 	 * @return an <code>AddedItemInformation</code> object that contains information
 	 * that is to be displayed to the cashier.
@@ -97,6 +106,7 @@ public class Sale {
 
 	/**
 	 * Checks if an item is already recorded in the current sale
+	 *
 	 * @param itemId the id of the item that is to be checked
 	 * @return the <code>LineItem</code> if the item was already recorded. If not, <code>null</code>
 	 * is returned.
@@ -108,6 +118,7 @@ public class Sale {
 
 	/**
 	 * Get the list of sold items
+	 *
 	 * @return the list of <code>soldItems</code>
 	 */
 	public List<LineItem> getSoldItems() {
@@ -116,25 +127,28 @@ public class Sale {
 
 	/**
 	 * Get the running total including the VAT rate
+	 *
 	 * @return the amount of the running total including the VAT rate
 	 */
-	Amount getRunningTotalIncludingTax(){
+	Amount getRunningTotalIncludingTax() {
 		return runningTotalIncludingTax;
 	}
 
 	/**
 	 * get the change from the customer's paid amount
+	 *
 	 * @return the <code>change</code> that the customer should be given
 	 */
-	Amount getChange(){
+	Amount getChange() {
 		return change;
 	}
 
 	/**
 	 * Get the total VAT of the sale
+	 *
 	 * @return the total VAT of the sale
 	 */
-	Amount getTotalVat(){
+	Amount getTotalVat() {
 		return runningTotalIncludingTax.minus(runningTotal);
 	}
 
@@ -146,11 +160,22 @@ public class Sale {
 		}
 		return null;
 	}
-	private void updateRunningTotal(Amount amountToAdd){
+
+	private void updateRunningTotal(Amount amountToAdd) {
 		runningTotal = runningTotal.plus(amountToAdd);
 	}
 
-	private void updateRunningTotalIncludingTax(Amount amountToAdd){
+	private void updateRunningTotalIncludingTax(Amount amountToAdd) {
 		runningTotalIncludingTax = runningTotalIncludingTax.plus(amountToAdd);
+	}
+
+	public void addSaleObserver(SaleObserver obs) {
+		saleObservers.add(obs);
+	}
+
+	private void notifyObservers() {
+		for (SaleObserver obs : saleObservers) {
+			obs.newSale(runningTotalIncludingTax);
+		}
 	}
 }
