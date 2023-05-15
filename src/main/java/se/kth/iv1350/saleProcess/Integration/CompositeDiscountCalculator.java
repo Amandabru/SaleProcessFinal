@@ -7,12 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompositeDiscountCalculator implements DiscountCalculator{
-    private List<DiscountCalculator> discountAlgoritmList = new ArrayList<>();
+    private List<DiscountCalculator> discountAlgorithmList = new ArrayList<>();
     @Override
-    Amount calculateDiscount(Sale sale){
+    public Amount calculateDiscount(Sale sale, Integer customerId){
+        Amount bestDiscount = new Amount();
+        for (DiscountCalculator discountCal : discountAlgorithmList){
+            Amount currentDiscount = discountCal.calculateDiscount(sale, customerId);
+            if(currentDiscount.isLarger(bestDiscount)){
+                bestDiscount = currentDiscount;
+            }
+        }
+        return bestDiscount;
     }
 
     void addDiscountCalculator(DiscountCalculator calculator) {
-        discountAlgoritmList.add(calculator);
+        discountAlgorithmList.add(calculator);
     }
 }
