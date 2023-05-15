@@ -18,7 +18,7 @@ public class Sale {
 	private Amount runningTotalIncludingTax;
 	private final List<LineItem> soldItems = new ArrayList<>();
 	private Amount change;
-
+	private Amount discount = new Amount();
 	private List<SaleObserver> saleObservers = new ArrayList<>();
 
 	/**
@@ -59,7 +59,7 @@ public class Sale {
 	 * @return the <code>change</code> that the customer should be given
 	 */
 	public Amount calculateChange(Amount payment) {
-		change = payment.minus(runningTotalIncludingTax);
+		change = payment.minus(runningTotalIncludingTax).minus(discount);
 		return change;
 	}
 
@@ -178,9 +178,16 @@ public class Sale {
 		saleObservers.addAll(observers);
 	}
 
+	public void setDiscount(Amount totalDiscount){
+		discount = totalDiscount;
+	}
+	public Amount getDiscount(){
+		return discount;
+	}
+
 	private void notifyObservers() {
 		for (SaleObserver obs : saleObservers) {
-			obs.updateRevenue(runningTotalIncludingTax);
+			obs.updateRevenue(runningTotalIncludingTax.minus(discount));
 		}
 	}
 }

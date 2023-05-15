@@ -21,7 +21,6 @@ public class Controller {
 	private final ExternalAccountingSystem accountingSystem;
 	private final DiscountDatabase discountDatabase;
 	private Sale sale;
-
 	private List<SaleObserver> saleObservers = new ArrayList<>();
 
 	/**
@@ -88,15 +87,15 @@ public class Controller {
 	 */
 	public Amount pay(Amount payment) {
 		Amount change = sale.calculateChange(payment);
-		cashRegister.updateBalance(payment);
+		cashRegister.updateBalance(payment.minus(change));
 		sale.logSale(accountingSystem, inventorySystem);
 		sale.printReceipt(printer);
 		return change;
 	}
 
 	public Amount createDiscountRequest(int customerId){
-		Amount discountedPrice = discountDatabase.fetchDiscount(customerId, sale);
-
+		Amount discount = discountDatabase.fetchDiscount(customerId, sale);
+		sale.setDiscount(discount);
 	}
 
 }

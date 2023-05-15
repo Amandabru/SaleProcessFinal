@@ -10,15 +10,15 @@ public class TotalRevenueView implements SaleObserver {
 
     /**
      * Updates the total revenue after ended sale and prints to <code>System.out</code>.
-     * @param runningTotal the <code>Amount</code> to add to the revenue.
+     * @param finalPrice the <code>Amount</code> to add to the revenue.
      */
     @Override
-    public void updateRevenue(Amount runningTotal) {
-        calculateRevenue(runningTotal);
+    public void updateRevenue(Amount finalPrice) {
+        calculateRevenue(finalPrice);
         printCurrentRevenue();
     }
-    private void calculateRevenue(Amount runningTotal){
-        totalRevenue = totalRevenue.plus(runningTotal);
+    private void calculateRevenue(Amount finalPrice){
+        totalRevenue = totalRevenue.plus(finalPrice);
     }
     private void printCurrentRevenue() {
         System.out.println("### Total Current Revenue ###");

@@ -17,15 +17,15 @@ public class TotalRevenueFileOutput implements SaleObserver {
 
     /**
      * Updates the total revenue after ended sale and prints to file.
-     * @param runningTotal the <code>Amount</code> to add to the revenue.
+     * @param finalPrice the <code>Amount</code> to add to the revenue.
      */
     @Override
-    public void updateRevenue(Amount runningTotal) {
-        calculateRevenue(runningTotal);
+    public void updateRevenue(Amount finalPrice) {
+        calculateRevenue(finalPrice);
         displaySale();
     }
-    private void calculateRevenue(Amount runningTotal){
-        totalRevenue = totalRevenue.plus(runningTotal);
+    private void calculateRevenue(Amount finalPrice){
+        totalRevenue = totalRevenue.plus(finalPrice);
     }
 
     private void displaySale(){

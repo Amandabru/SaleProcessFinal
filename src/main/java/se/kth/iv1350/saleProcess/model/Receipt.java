@@ -45,6 +45,10 @@ public class Receipt {
 		addToLine(builder, sale.getTotalVat().toString());
 		endSection(builder);
 
+		builder.append("Discount: ");
+		addToLine(builder, sale.getDiscount().toString());
+		endSection(builder);
+
 		builder.append("Change: ");
 		appendLine(builder, sale.getChange().toString());
 
