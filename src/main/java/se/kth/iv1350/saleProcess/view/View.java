@@ -26,6 +26,8 @@ public class View {
 	 */
 	public View(Controller contr) {
 		this.contr = contr;
+		contr.addSaleObserver(new TotalRevenueFileOutput());
+		contr.addSaleObserver(new TotalRevenueView());
 	}
 	private void setLogger(Logger logger) { this.logger = logger;
 	}
@@ -55,6 +57,29 @@ public class View {
 			setLogger(consoleLogger);
 			logger.log("Error occurred when trying to get item information. Contact technical support.");
 		}
+		contr.initiateSale();
+		try {
+			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
+			System.out.println(addedItemInformation);
+			AddedItemInformation addedItemInformation2 = contr.addItemToSale(12, 1);
+			System.out.println(addedItemInformation2);
+			AddedItemInformation addedItemInformation3 = contr.addItemToSale(25, 2);
+			System.out.println(addedItemInformation3);
+			Amount totalPrice = contr.endSale();
+			System.out.println("Total price sale: " + totalPrice +"\n");
+			Amount change = contr.pay(new Amount(100));
+			System.out.println("Change: " + change);
+		} catch(InvalidItemIdException exception) {
+			setLogger(consoleLogger);
+			logger.log("Could not find item, please try again.");
+		} catch(DataBaseException exception) {
+			setLogger(fileLogger);
+			logger.log(exception.toString());
+			setLogger(consoleLogger);
+			logger.log("Error occurred when trying to get item information. Contact technical support.");
+		}
+
+
 	}
 }
 

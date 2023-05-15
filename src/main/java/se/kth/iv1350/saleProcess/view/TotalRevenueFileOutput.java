@@ -23,7 +23,7 @@ public class TotalRevenueFileOutput implements SaleObserver {
     private void displaySale(){
         try {
             logFile = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
-            logFile.println(totalRevenue.toString());
+            logFile.println("Total revenue: " + totalRevenue.toString());
         } catch (IOException ex) {
             System.out.println("Could not create logger.");
             ex.printStackTrace();

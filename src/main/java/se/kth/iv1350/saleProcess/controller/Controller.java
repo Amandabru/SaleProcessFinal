@@ -90,8 +90,4 @@ public class Controller {
 		return change;
 	}
 
-	public Amount createDiscountRequest(int customerId) {
-		return null;
-	}
-
 }
