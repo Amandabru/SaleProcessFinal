@@ -59,7 +59,7 @@ public class Sale {
 	 * @return the <code>change</code> that the customer should be given
 	 */
 	public Amount calculateChange(Amount payment) {
-		change = payment.minus(runningTotalIncludingTax).minus(discount);
+		change = payment.minus(runningTotalIncludingTax.minus(discount));
 		return change;
 	}
 
@@ -132,6 +132,12 @@ public class Sale {
 	 */
 	public Amount getRunningTotalIncludingTax() {
 		return runningTotalIncludingTax;
+	}
+
+	public Integer getTotalNumberOfItems(){
+		Integer numberOfItems= soldItems.stream().reduce(0, (subQuantity, item) ->
+				subQuantity + item.getQuantity(), Integer::sum);
+		return numberOfItems;
 	}
 
 	/**

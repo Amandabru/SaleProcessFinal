@@ -3,6 +3,8 @@ package se.kth.iv1350.saleProcess.Integration;
 import se.kth.iv1350.saleProcess.model.Sale;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
+import java.util.List;
+
 /**
  * Class that implements the <code>DiscountCalculator</code> interface and that calculates
  * discount for premium customers.
@@ -19,11 +21,10 @@ public class PremiumCustomerDiscountCalculator implements DiscountCalculator{
     public Amount calculateDiscount(Sale sale) {
         Amount discount = new Amount();
         Amount totalPrice = sale.getRunningTotalIncludingTax();
-        int numberOfBoughtItems = sale.getSoldItems().size();
-        if (numberOfBoughtItems>2){
+        if (sale.getTotalNumberOfItems()>2){
             discount = totalPrice.multiply(0.2F);
         }
-        else if(numberOfBoughtItems>4){
+        else if(sale.getTotalNumberOfItems()>4){
             discount = totalPrice.multiply(0.3F);
         }
         return discount;

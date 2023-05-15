@@ -13,14 +13,15 @@ import java.util.List;
  */
 public class DiscountDatabase {
 
-	private final List<int> premiumCustomers = new ArrayList<int>();
-	private final List<int> seniorCustomers = new ArrayList<int>();
+	private final List<Integer> premiumCustomers = new ArrayList<Integer>();
+	private final List<Integer> seniorCustomers = new ArrayList<Integer>();
 
 	/**
 	 * Creates new instance of <code>DiscountDatabase</code> that represents a real database
 	 */
 	public DiscountDatabase(){
-		premiumCustomers.add(19980530);
+		premiumCustomers.add(19550530);
+		seniorCustomers.add(19550530);
 		premiumCustomers.add(19980704);
 		seniorCustomers.add(19001025);
 	}

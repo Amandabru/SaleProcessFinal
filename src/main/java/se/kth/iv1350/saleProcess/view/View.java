@@ -46,6 +46,7 @@ public class View {
 			System.out.println(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
+			contr.createDiscountRequest(19550530);
 			Amount change = contr.pay(new Amount(100));
 			System.out.println("Change: " + change);
 		} catch(InvalidItemIdException exception) {
@@ -57,6 +58,7 @@ public class View {
 			setLogger(consoleLogger);
 			logger.log("Error occurred when trying to get item information. Contact technical support.");
 		}
+		System.out.println("-------------------------------------------------");
 		contr.initiateSale();
 		try {
 			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
@@ -79,8 +81,6 @@ public class View {
 			setLogger(consoleLogger);
 			logger.log("Error occurred when trying to get item information. Contact technical support.");
 		}
-
-
 	}
 }
 

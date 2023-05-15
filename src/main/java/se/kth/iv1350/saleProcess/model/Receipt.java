@@ -37,8 +37,8 @@ public class Receipt {
 			appendLine(builder, "(" + (item.getPrice().toString()) + " kr)");
 		}
 		endSection(builder);
-		builder.append("Total Cost Including VAT: ");
-		addToLine(builder, sale.getRunningTotalIncludingTax().toString());
+		builder.append("Total: ");
+		addToLine(builder, sale.getRunningTotalIncludingTax().minus(sale.getDiscount()).toString());
 		endSection(builder);
 
 		builder.append("Total VAT: ");
