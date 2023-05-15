@@ -48,6 +48,8 @@ public final class Amount {
         return new Amount(amount - other.amount);
     }
 
+    public boolean isLarger(Amount other){return (amount > other.amount);}
+
     /**
      * Converts <code>amount</code> from int to a string
      * @return the <code>amount</code> value stringified.
