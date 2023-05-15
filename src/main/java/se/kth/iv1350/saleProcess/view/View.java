@@ -40,7 +40,7 @@ public class View {
 			System.out.println(addedItemInformation);
 			AddedItemInformation addedItemInformation2 = contr.addItemToSale(12, 1);
 			System.out.println(addedItemInformation2);
-			AddedItemInformation addedItemInformation3 = contr.addItemToSale(50, 2);
+			AddedItemInformation addedItemInformation3 = contr.addItemToSale(25, 2);
 			System.out.println(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");

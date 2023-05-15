@@ -42,7 +42,7 @@ public class Controller {
 	 */
 	public void initiateSale() {
 		this.sale = new Sale();
-		sale.addSaleObserver(saleObservers);
+		sale.addSaleObservers(saleObservers);
 	}
 
 	/**

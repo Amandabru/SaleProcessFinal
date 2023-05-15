@@ -168,9 +168,8 @@ public class Sale {
 	private void updateRunningTotalIncludingTax(Amount amountToAdd) {
 		runningTotalIncludingTax = runningTotalIncludingTax.plus(amountToAdd);
 	}
-
-	public void addSaleObserver(SaleObserver obs) {
-		saleObservers.add(obs);
+	public void addSaleObservers(List<SaleObserver> observers) {
+		saleObservers.addAll(observers);
 	}
 
 	private void notifyObservers() {
