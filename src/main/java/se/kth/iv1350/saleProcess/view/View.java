@@ -67,6 +67,7 @@ public class View {
 			System.out.println(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
+			contr.createDiscountRequest(19980530);
 			Amount change = contr.pay(new Amount(100));
 			System.out.println("Change: " + change);
 		} catch(InvalidItemIdException exception) {

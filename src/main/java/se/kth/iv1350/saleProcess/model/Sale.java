@@ -49,7 +49,6 @@ public class Sale {
 	 * @return the running total including the VAT rate
 	 */
 	public Amount endSale() {
-		notifyObservers();
 		return runningTotalIncludingTax;
 	}
 
@@ -83,6 +82,7 @@ public class Sale {
 	public void logSale(ExternalAccountingSystem accountSys, ExternalInventorySystem inventorySys) {
 		SalesLog salesLog = new SalesLog(accountSys, inventorySys);
 		salesLog.updateSystems(this);
+		notifyObservers();
 	}
 
 	/**

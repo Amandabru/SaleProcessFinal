@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class DiscountDatabase {
 
-	private final List<DiscountDTO> discounts = new ArrayList<>();
 	private final List<int> premiumCustomers = new ArrayList<int>();
 	private final List<int> seniorCustomers = new ArrayList<int>();
 

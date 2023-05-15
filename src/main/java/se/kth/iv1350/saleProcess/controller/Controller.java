@@ -95,7 +95,8 @@ public class Controller {
 	}
 
 	public Amount createDiscountRequest(int customerId){
-		return discountDatabase.fetchDiscount(customerId, sale);
+		Amount discountedPrice = discountDatabase.fetchDiscount(customerId, sale);
+
 	}
 
 }
