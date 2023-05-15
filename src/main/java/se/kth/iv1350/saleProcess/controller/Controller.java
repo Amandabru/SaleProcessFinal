@@ -93,7 +93,7 @@ public class Controller {
 		return change;
 	}
 
-	public Amount createDiscountRequest(int customerId){
+	public void createDiscountRequest(int customerId){
 		Amount discount = discountDatabase.fetchDiscount(customerId, sale);
 		sale.setDiscount(discount);
 	}

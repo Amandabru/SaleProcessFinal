@@ -8,36 +8,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is to be implemented when alternative flows are considered.
+ * The class that stores the customer id that are eligible for discounts.
+ *
  */
 public class DiscountDatabase {
 
 	private final List<int> premiumCustomers = new ArrayList<int>();
 	private final List<int> seniorCustomers = new ArrayList<int>();
 
+	/**
+	 * Creates new instance of <code>DiscountDatabase</code> that represents a real database
+	 */
 	public DiscountDatabase(){
 		premiumCustomers.add(19980530);
 		premiumCustomers.add(19980704);
 		seniorCustomers.add(19001025);
 	}
 
+	/**
+	 * Checks if the customer is elegible for a discount, either the premium or senior discount.
+	 * @param customerId The id of the customer being the personal number
+	 * @param sale the <code>sale</code> object representing the sale
+	 * @return the largest discount
+	 */
 	public Amount fetchDiscount(int customerId, Sale sale) {
-		Amount premiumPrice = new Amount();
-		Amount seniorPrice = new Amount();
+		Amount premiumDiscount = new Amount();
+		Amount seniorDiscount = new Amount();
 
 		if(premiumCustomers.contains(customerId)){
-			premiumPrice = new PremiumCustomerDiscountCalculator().calculateDiscount(sale);
+			premiumDiscount = new PremiumCustomerDiscountCalculator().calculateDiscount(sale);
 		}
 
 		if(seniorCustomers.contains(customerId)){
-			seniorPrice = new SeniorCustomerDiscountCalculator().calculateDiscount(sale);
+			seniorDiscount = new SeniorCustomerDiscountCalculator().calculateDiscount(sale);
 		}
 
-		if(premiumPrice.isLarger(seniorPrice)){
-			return seniorPrice;
+		if(premiumDiscount.isLarger(seniorDiscount)){
+			return premiumDiscount;
 		}
 		else{
-			return premiumPrice;
+			return seniorDiscount;
 		}
 
 
