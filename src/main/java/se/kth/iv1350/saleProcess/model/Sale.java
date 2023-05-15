@@ -168,13 +168,19 @@ public class Sale {
 	private void updateRunningTotalIncludingTax(Amount amountToAdd) {
 		runningTotalIncludingTax = runningTotalIncludingTax.plus(amountToAdd);
 	}
+
+
+	/**
+	 * Adds all the observers in the <code>observers</code> list to the <code>SaleObservers</code> list
+	 * @param observers the list of observers
+	 */
 	public void addSaleObservers(List<SaleObserver> observers) {
 		saleObservers.addAll(observers);
 	}
 
 	private void notifyObservers() {
 		for (SaleObserver obs : saleObservers) {
-			obs.newSale(runningTotalIncludingTax);
+			obs.updateRevenue(runningTotalIncludingTax);
 		}
 	}
 }

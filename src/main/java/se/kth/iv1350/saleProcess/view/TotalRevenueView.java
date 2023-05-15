@@ -4,11 +4,11 @@ import se.kth.iv1350.saleProcess.utils.Amount;
 public class TotalRevenueView implements SaleObserver {
     private Amount totalRevenue = new Amount();
     @Override
-    public void newSale(Amount runningTotal) {
-        addNewSale(runningTotal);
+    public void updateRevenue(Amount runningTotal) {
+        calculateRevenue(runningTotal);
         printCurrentRevenue();
     }
-    private void addNewSale(Amount runningTotal){
+    private void calculateRevenue(Amount runningTotal){
         totalRevenue = totalRevenue.plus(runningTotal);
     }
     private void printCurrentRevenue() {

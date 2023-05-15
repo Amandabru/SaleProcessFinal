@@ -12,7 +12,7 @@ public class TotalRevenueFileOutput implements SaleObserver {
     private static final String LOG_FILE_NAME = "total-revenue-log.txt";
     private PrintWriter logFile;
     @Override
-    public void newSale(Amount runningTotal) {
+    public void updateRevenue(Amount runningTotal) {
         addNewSale(runningTotal);
         displaySale();
     }

@@ -38,7 +38,7 @@ public class Controller {
 	}
 
 	/**
-	 * Start the sale by initiating a <code>Sale</code> object.
+	 * Start the sale by initiating a <code>Sale</code> object and adding observers.
 	 */
 	public void initiateSale() {
 		this.sale = new Sale();
@@ -52,6 +52,10 @@ public class Controller {
 		return sale.endSale();
 	}
 
+	/**
+	 * Adds the observer to the <code>saleObserver</code> list
+	 * @param obs the observer to be added to the list
+	 */
 	public void addSaleObserver(SaleObserver obs) {
 		saleObservers.add(obs);
 	}
