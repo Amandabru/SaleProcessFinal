@@ -130,7 +130,7 @@ public class Sale {
 	 *
 	 * @return the amount of the running total including the VAT rate
 	 */
-	Amount getRunningTotalIncludingTax() {
+	public Amount getRunningTotalIncludingTax() {
 		return runningTotalIncludingTax;
 	}
 
