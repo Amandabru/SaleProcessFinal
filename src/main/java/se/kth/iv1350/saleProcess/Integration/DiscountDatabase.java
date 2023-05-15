@@ -1,6 +1,5 @@
 package se.kth.iv1350.saleProcess.Integration;
 
-import se.kth.iv1350.saleProcess.model.AddedItemInformation;
 import se.kth.iv1350.saleProcess.model.Sale;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
@@ -15,6 +14,8 @@ public class DiscountDatabase {
 
 	private final List<Integer> premiumCustomers = new ArrayList<Integer>();
 	private final List<Integer> seniorCustomers = new ArrayList<Integer>();
+	CompositeDiscountCalculator discountCalculator = new CompositeDiscountCalculator();
+	List <DiscountCalculator> discountCalcList = new ArrayList<>();
 
 	/**
 	 * Creates new instance of <code>DiscountDatabase</code> that represents a real database
@@ -24,6 +25,8 @@ public class DiscountDatabase {
 		seniorCustomers.add(19550530);
 		premiumCustomers.add(19980704);
 		seniorCustomers.add(19001025);
+		discountCalcList.add(new PremiumCustomerDiscountCalculator());
+		discountCalcList.add(new SeniorCustomerDiscountCalculator());
 	}
 
 	/**
@@ -35,7 +38,6 @@ public class DiscountDatabase {
 	public Amount fetchDiscount(int customerId, Sale sale) {
 		Amount premiumDiscount = new Amount();
 		Amount seniorDiscount = new Amount();
-
 		if(premiumCustomers.contains(customerId)){
 			premiumDiscount = new PremiumCustomerDiscountCalculator().calculateDiscount(sale);
 		}
@@ -51,8 +53,11 @@ public class DiscountDatabase {
 			return seniorDiscount;
 		}
 
-
-
+	}
+	private void addDiscountAlgorithms() {
+		for (DiscountCalculator discountCalc : discountCalcList) {
+			discountCalculator.addDiscountCalculator(discountCalc);
+		}
 	}
 
 }
