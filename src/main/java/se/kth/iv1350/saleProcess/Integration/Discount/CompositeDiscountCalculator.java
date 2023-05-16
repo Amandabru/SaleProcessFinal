@@ -30,6 +30,10 @@ public class CompositeDiscountCalculator implements DiscountCalculator{
         return bestDiscount;
     }
 
+    /**
+     * Adds the different calculator algorithms to the <code>discountAlgorithmList</code>
+     * @param calculator a discount calculator algorithm
+     */
     void addDiscountCalculator(DiscountCalculator calculator) {
         discountAlgorithmList.add(calculator);
     }

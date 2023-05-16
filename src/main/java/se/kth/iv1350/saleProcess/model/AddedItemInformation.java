@@ -21,11 +21,18 @@ public class AddedItemInformation {
         this.runningTotalIncludingTax = runningTotalIncludingTax ;
     }
 
+    /**
+     * Get the <code>lineItem</code>
+     * @return the line item
+     */
     public LineItem getLineItem(){
         return lineItem;
     }
 
-
+    /**
+     * Get the running total including VAT rate
+     * @return the running total including VAT rate for the specific <code>lineItem</code>
+     */
     public Amount getRunningTotalIncludingTax(){
         return runningTotalIncludingTax;
     }

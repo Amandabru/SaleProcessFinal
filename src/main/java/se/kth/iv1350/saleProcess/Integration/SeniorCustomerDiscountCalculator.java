@@ -14,6 +14,10 @@ import java.util.List;
 public class SeniorCustomerDiscountCalculator implements DiscountCalculator {
 
     private final List<Integer> seniorCustomers = new ArrayList<Integer>();
+
+    /**
+     * Creates a new instance of <code>SeniorCustomerDiscountCalculator</code>
+     */
     public SeniorCustomerDiscountCalculator(){
         seniorCustomers.add(19550530);
         seniorCustomers.add(19001025);
@@ -22,7 +26,8 @@ public class SeniorCustomerDiscountCalculator implements DiscountCalculator {
      * Senior discount is calculated. The discount means that the customer
      * gets the most expensive item 50% off
      * @param sale the <code>sale</code> object representing the whole sale
-     * @return the senior discounted amount for the sale
+     * @param customerId the id for the customer that is the personal number
+     * @return the senior discount for the sale
      */
     @Override
     public Amount calculateDiscount(Sale sale, Integer customerId) {

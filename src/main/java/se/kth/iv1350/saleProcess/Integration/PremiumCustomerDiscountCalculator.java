@@ -15,6 +15,9 @@ public class PremiumCustomerDiscountCalculator implements DiscountCalculator {
 
     private final List<Integer> premiumCustomers = new ArrayList<Integer>();
 
+    /**
+     * Creates a new instance of <code>PremiumCustomerDiscountCalculator</code>
+     */
     public PremiumCustomerDiscountCalculator(){
         premiumCustomers.add(19980704);
         premiumCustomers.add(19550530);
@@ -24,7 +27,8 @@ public class PremiumCustomerDiscountCalculator implements DiscountCalculator {
      * Premium discount is calculated. The number of bought items decides the
      * percentage of the discount.
      * @param sale the <code>sale</code> object representing the whole sale.
-     * @return the premium discount amount for the sale.
+     * @param customerId the id of the customer being a personal number
+     * @return the premium discount for the sale.
      */
     @Override
     public Amount calculateDiscount(Sale sale, Integer customerId) {

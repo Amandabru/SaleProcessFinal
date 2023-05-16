@@ -30,8 +30,7 @@ public class View {
 	}
 
 	/**
-	 * Creates a readable string from the information about the newly added item
-	 * @return A formatted string representing the content of a newly added item
+	 * Creates a readable string from the information about the newly added item and prints it to the console
 	 */
 	public void printAddedItem(AddedItemInformation addedItem) {
 		ItemDTO item = addedItem.getLineItem().getItem();

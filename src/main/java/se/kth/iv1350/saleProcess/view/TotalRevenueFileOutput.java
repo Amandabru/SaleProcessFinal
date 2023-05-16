@@ -28,6 +28,9 @@ public class TotalRevenueFileOutput implements SaleObserver {
         totalRevenue = totalRevenue.plus(finalPrice);
     }
 
+    /**
+     * Writes the total revenue of the sale to a log.
+     */
     private void displaySale(){
         try {
             logFile = new PrintWriter(new FileWriter(LOG_FILE_NAME, true), true);
