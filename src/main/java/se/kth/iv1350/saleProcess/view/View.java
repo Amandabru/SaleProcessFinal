@@ -1,13 +1,10 @@
 package se.kth.iv1350.saleProcess.view;
 
 
-import se.kth.iv1350.saleProcess.Integration.DataBaseException;
 import se.kth.iv1350.saleProcess.Integration.InvalidItemIdException;
+import se.kth.iv1350.saleProcess.Integration.ItemDTO;
 import se.kth.iv1350.saleProcess.controller.Controller;
 import se.kth.iv1350.saleProcess.model.AddedItemInformation;
-import se.kth.iv1350.saleProcess.model.ConsoleLogger;
-import se.kth.iv1350.saleProcess.model.FileLogger;
-import se.kth.iv1350.saleProcess.model.Logger;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
 /**
@@ -33,17 +30,28 @@ public class View {
 	}
 
 	/**
+	 * Creates a readable string from the information about the newly added item
+	 * @return A formatted string representing the content of a newly added item
+	 */
+	public void printAddedItem(AddedItemInformation addedItem) {
+		ItemDTO item = addedItem.getLineItem().getItem();
+		System.out.println(String.format("Item: %s \nDescription: %s \nPrice/unit: %s \nQuantity: %s\nRunning Total: %s\n",
+				item.getName(), item.getItemDescription(), item.getPriceIncludingTax().toString(), addedItem.getLineItem().getQuantity(),
+				addedItem.getRunningTotalIncludingTax().toString()));
+	}
+
+	/**
 	 * Runs a sample execution of the program, with hard coded calls to the controller.
 	 */
 	public void sampleExecution(){
 		contr.initiateSale();
 		try {
 			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
-			System.out.println(addedItemInformation);
+			printAddedItem(addedItemInformation);
 			AddedItemInformation addedItemInformation2 = contr.addItemToSale(12, 1);
-			System.out.println(addedItemInformation2);
+			printAddedItem(addedItemInformation2);
 			AddedItemInformation addedItemInformation3 = contr.addItemToSale(25, 2);
-			System.out.println(addedItemInformation3);
+			printAddedItem(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
 			contr.createDiscountRequest(19550530);
@@ -52,21 +60,21 @@ public class View {
 		} catch(InvalidItemIdException exception) {
 			setLogger(consoleLogger);
 			logger.log("Could not find item, please try again.");
-		} catch(DataBaseException exception) {
+		} catch(Exception exception) {
 			setLogger(fileLogger);
 			logger.log(exception.toString());
 			setLogger(consoleLogger);
-			logger.log("Error occurred when trying to get item information. Contact technical support.");
+			logger.log("Error occurred. Contact technical support.");
 		}
 		System.out.println("-------------------------------------------------");
 		contr.initiateSale();
 		try {
 			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
-			System.out.println(addedItemInformation);
+			printAddedItem(addedItemInformation);
 			AddedItemInformation addedItemInformation2 = contr.addItemToSale(12, 1);
-			System.out.println(addedItemInformation2);
+			printAddedItem(addedItemInformation2);
 			AddedItemInformation addedItemInformation3 = contr.addItemToSale(25, 2);
-			System.out.println(addedItemInformation3);
+			printAddedItem(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
 			contr.createDiscountRequest(19980530);
@@ -75,11 +83,11 @@ public class View {
 		} catch(InvalidItemIdException exception) {
 			setLogger(consoleLogger);
 			logger.log("Could not find item, please try again.");
-		} catch(DataBaseException exception) {
+		} catch(Exception exception) {
 			setLogger(fileLogger);
 			logger.log(exception.toString());
 			setLogger(consoleLogger);
-			logger.log("Error occurred when trying to get item information. Contact technical support.");
+			logger.log("Error occurred. Contact technical support.");
 		}
 	}
 }

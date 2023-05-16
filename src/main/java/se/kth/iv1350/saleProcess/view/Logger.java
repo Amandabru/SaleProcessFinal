@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleProcess.model;
+package se.kth.iv1350.saleProcess.view;
 
 /**
  * An interface for logging messages to a log. Does not handle log locations,

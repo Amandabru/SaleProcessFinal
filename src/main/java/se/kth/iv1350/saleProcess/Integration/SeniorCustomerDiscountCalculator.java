@@ -1,5 +1,6 @@
 package se.kth.iv1350.saleProcess.Integration;
 
+import se.kth.iv1350.saleProcess.Integration.Discount.DiscountCalculator;
 import se.kth.iv1350.saleProcess.model.Sale;
 import se.kth.iv1350.saleProcess.utils.Amount;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Class that implements the <code>DiscountCalculator</code> interface and that calculates
  * discount for senior customers
  */
-public class SeniorCustomerDiscountCalculator implements DiscountCalculator{
+public class SeniorCustomerDiscountCalculator implements DiscountCalculator {
 
     private final List<Integer> seniorCustomers = new ArrayList<Integer>();
     public SeniorCustomerDiscountCalculator(){

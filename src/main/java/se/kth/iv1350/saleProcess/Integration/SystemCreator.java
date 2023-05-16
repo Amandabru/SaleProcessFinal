@@ -1,5 +1,7 @@
 package se.kth.iv1350.saleProcess.Integration;
 
+import se.kth.iv1350.saleProcess.Integration.Discount.DiscountDatabase;
+
 /**
  * Responsible for creating the representations of all external systems.
  */

@@ -1,6 +1,7 @@
 package se.kth.iv1350.saleProcess.controller;
 
 import se.kth.iv1350.saleProcess.Integration.*;
+import se.kth.iv1350.saleProcess.Integration.Discount.DiscountDatabase;
 import se.kth.iv1350.saleProcess.model.AddedItemInformation;
 import se.kth.iv1350.saleProcess.model.LineItem;
 import se.kth.iv1350.saleProcess.model.Sale;

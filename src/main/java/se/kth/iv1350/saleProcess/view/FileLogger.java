@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleProcess.model;
+package se.kth.iv1350.saleProcess.view;
 
 import java.io.FileWriter;
 import java.io.IOException;
