@@ -1,4 +1,4 @@
-package se.kth.iv1350.saleProcess.Integration;
+package se.kth.iv1350.saleProcess.Integration.Discount;
 
 import se.kth.iv1350.saleProcess.Integration.Discount.DiscountCalculator;
 import se.kth.iv1350.saleProcess.model.Sale;
