@@ -43,6 +43,7 @@ public class View {
 	 * Runs a sample execution of the program, with hard coded calls to the controller.
 	 */
 	public void sampleExecution(){
+		System.out.println("-----------------SALE eligible for discount------------------");
 		contr.initiateSale();
 		try {
 			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
@@ -65,18 +66,32 @@ public class View {
 			setLogger(consoleLogger);
 			logger.log("Error occurred. Contact technical support.");
 		}
-		System.out.println("-------------------------------------------------");
+		System.out.println("-----------------SALE not eligible for discount------------------");
 		contr.initiateSale();
 		try {
-			AddedItemInformation addedItemInformation = contr.addItemToSale(12, 2);
-			printAddedItem(addedItemInformation);
-			AddedItemInformation addedItemInformation2 = contr.addItemToSale(12, 1);
-			printAddedItem(addedItemInformation2);
 			AddedItemInformation addedItemInformation3 = contr.addItemToSale(25, 2);
 			printAddedItem(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
 			contr.createDiscountRequest(19980530);
+			Amount change = contr.pay(new Amount(100));
+			System.out.println("Change: " + change);
+		} catch(InvalidItemIdException exception) {
+			setLogger(consoleLogger);
+			logger.log("Could not find item, please try again.");
+		} catch(Exception exception) {
+			setLogger(fileLogger);
+			logger.log(exception.toString());
+			setLogger(consoleLogger);
+			logger.log("Error occurred. Contact technical support.");
+		}
+		System.out.println("---------------------SALE with exception----------------------------");
+		contr.initiateSale();
+		try {
+			AddedItemInformation addedItemInformation3 = contr.addItemToSale(10, 2);
+			printAddedItem(addedItemInformation3);
+			Amount totalPrice = contr.endSale();
+			System.out.println("Total price sale: " + totalPrice +"\n");
 			Amount change = contr.pay(new Amount(100));
 			System.out.println("Change: " + change);
 		} catch(InvalidItemIdException exception) {
