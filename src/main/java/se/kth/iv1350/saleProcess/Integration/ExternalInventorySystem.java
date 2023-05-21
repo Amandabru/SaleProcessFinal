@@ -48,7 +48,8 @@ public class ExternalInventorySystem {
 				return item;
 			}
 			else if (itemId == 50){
-				throw new DataBaseException("Database cannot be called.");
+				throw new DataBaseException("Database cannot be called. Error occurred when trying" +
+						" to get item " + itemId);
 			}
 		}
 		throw new InvalidItemIdException("No item with the identifier: " + Integer.toString(itemId));

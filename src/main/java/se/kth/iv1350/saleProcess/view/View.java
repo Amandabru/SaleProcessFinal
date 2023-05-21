@@ -85,10 +85,10 @@ public class View {
 			setLogger(consoleLogger);
 			logger.log("Error occurred. Contact technical support.");
 		}
-		System.out.println("---------------------SALE with exception----------------------------");
+		System.out.println("--------------SALE with DatabaseException exception-----------------------");
 		contr.initiateSale();
 		try {
-			AddedItemInformation addedItemInformation3 = contr.addItemToSale(10, 2);
+			AddedItemInformation addedItemInformation3 = contr.addItemToSale(50, 2);
 			printAddedItem(addedItemInformation3);
 			Amount totalPrice = contr.endSale();
 			System.out.println("Total price sale: " + totalPrice +"\n");
